@@ -16,6 +16,7 @@ const envSchema = z.object({
   // App
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().int().positive().default(5000),
+  HOST: z.string().default('127.0.0.1'),
 
   // Firebase Admin SDK
   FIREBASE_PROJECT_ID: z.string().min(1, 'FIREBASE_PROJECT_ID is required'),

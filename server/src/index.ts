@@ -61,9 +61,9 @@ app.use(notFoundMiddleware);
 app.use(errorHandler);
 
 // ─── Server Startup ───────────────────────────────────────────
-const server = app.listen(env.PORT, () => {
+const server = app.listen(env.PORT, env.HOST, () => {
   logger.info(
-    `[Server] AUTOSURE API running on port ${env.PORT} in ${env.NODE_ENV} mode`
+    `[Server] AUTOSURE API running on ${env.HOST}:${env.PORT} in ${env.NODE_ENV} mode`
   );
 });
 

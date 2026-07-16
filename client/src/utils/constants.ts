@@ -3,7 +3,12 @@
  */
 
 // ─── API ──────────────────────────────────────────────────────
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
+const LOCAL_API_BASE_URL = 'http://localhost:5001/api/v1';
+const PROD_API_BASE_URL = 'https://autosure.onrender.com/api/v1';
+
+export const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? LOCAL_API_BASE_URL : PROD_API_BASE_URL);
 export const API_VERSION = 'v1';
 export const API_TIMEOUT_MS = 30_000;
 

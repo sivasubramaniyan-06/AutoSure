@@ -1,0 +1,21 @@
+{
+  "name": "autosure",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AUTOSURE monorepo launcher for client and server",
+  "scripts": {
+    "dev": "sh -c 'npm run dev --prefix server & npm run dev --prefix client & wait'",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix server && npm run build --prefix client",
+    "build:server": "npm run build --prefix server",
+    "build:client": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "preview": "npm run preview --prefix client",
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "postinstall": "npm run install:all"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
