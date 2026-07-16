@@ -35,8 +35,29 @@ export const errorHandler: ErrorRequestHandler = (
     return;
   }
 
-  // ── Unknown errors ────────────────────────────────────────────
+  // ── CORS errors ───────────────────────────────────────────────
+  // The `cors` package throws a plain Error (not AppError) when an origin
+  // is rejected. Return 403 Forbidden so Render / clients get the right
+  // status code instead of a misleading 500.
   const error = err as Error;
+  if (error.message?.startsWith('CORS:')) {
+    logger.warn(`[CORS] Blocked request: ${error.message}`, {
+      path: req.path,
+      method: req.method,
+      ip: req.ip,
+    });
+
+    res.status(403).json({
+      success: false,
+      message: error.message,
+      code: 'CORS_FORBIDDEN',
+      statusCode: 403,
+      timestamp: new Date().toISOString(),
+    });
+    return;
+  }
+
+  // ── Unknown errors ────────────────────────────────────────────
   logger.error(`[Error] Unhandled exception: ${error.message}`, {
     stack: error.stack,
     path: req.path,
