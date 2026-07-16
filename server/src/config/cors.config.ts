@@ -30,8 +30,9 @@ const isAllowedOrigin = (origin: string) => {
 
 export const corsOptions: CorsOptions = {
   origin(origin, callback) {
-    // Allow server-to-server requests (no origin) in development only
-    if (!origin && env.NODE_ENV === 'development') {
+    // Allow server-to-server requests and platform health checks.
+    // Browser requests still need to match the allowed origin list.
+    if (!origin) {
       return callback(null, true);
     }
     if (origin && isAllowedOrigin(origin)) {
