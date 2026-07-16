@@ -11,6 +11,9 @@
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "type-check": "tsc --noEmit"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.9",

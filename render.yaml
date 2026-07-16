@@ -10,6 +10,7 @@ services:
     buildCommand: npm install && npm run build
     startCommand: npm run start
     healthCheckPath: /api/v1/health
+    nodeVersion: 20.x
     envVars:
       - key: NODE_ENV
         value: production

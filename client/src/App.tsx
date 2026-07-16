@@ -25,6 +25,7 @@ import { ROUTES } from '@/utils/constants';
 const LoginPage = lazy(() => import('@/pages/auth/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/auth/RegisterPage'));
 const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage'));
+const LandingPage = lazy(() => import('@/pages/LandingPage'));
 
 // Dashboard
 const DashboardPage = lazy(() => import('@/pages/dashboard/DashboardPage'));
@@ -50,8 +51,8 @@ export default function App() {
         <BrowserRouter>
           <Suspense fallback={<FullPageSpinner />}>
             <Routes>
-              {/* Root redirect */}
-              <Route path="/" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
+              {/* Root landing page */}
+              <Route path="/" element={<LandingPage />} />
 
               {/* ── Public Auth Routes (guests only) ── */}
               <Route element={<GuestRoute />}>
